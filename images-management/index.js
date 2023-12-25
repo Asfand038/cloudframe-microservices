@@ -1,5 +1,5 @@
 import express from "express";
-// import cors from "cors";
+import cors from "cors";
 import databseConnect from "./utils/db.js";
 import photosRoutes from "./routes/photos.route.js";
 import dotenv from "dotenv";
@@ -9,6 +9,7 @@ import cloudinary from "cloudinary";
 // import fileUpload from "express-fileupload";
 dotenv.config();
 const app = express();
+app.use(cors());
 // app.use(
 //   fileUpload({
 //     useTempFiles: true,

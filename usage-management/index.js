@@ -1,5 +1,5 @@
 import express from "express";
-// import cors from "cors";
+import cors from "cors";
 import databseConnect from "./utils/db.js";
 import usageRoutes from "./routes/usage.route.js";
 import dotenv from "dotenv";
@@ -10,6 +10,7 @@ import cron from 'node-cron';
 import axios from "axios";
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: "10mb" }));

@@ -1,11 +1,12 @@
 import express from "express";
-// import cors from "cors";
+import cors from "cors";
 // import databseConnect from "./utils/db.js";
 import eventRoutes from "./routes/event.route.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: "10mb" }));
