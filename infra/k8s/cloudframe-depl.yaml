@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudframe-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudframe
+  template:
+    metadata:
+      labels:
+        app: cloudframe
+    spec:
+      containers:
+        - name: cloudframe
+          image: us.gcr.io/cloud-frame-409720/cloudframe
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudframe-srv
+spec:
+  selector:
+    app: cloudframe
+  ports:
+    - name: cloudframe
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

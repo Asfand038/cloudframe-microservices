@@ -18,7 +18,7 @@ export const signup = async (req, res, next) => {
         username: newUser.username,
       },
     };
-    axios.post("http://localhost:4004/api/events", event).catch((err) => {
+    axios.post("http://event-handler-srv:4004/api/events", event).catch((err) => {
       console.log(err.message);
     });
 
@@ -48,7 +48,7 @@ export const signin = async (req, res, next) => {
         username: validUser.username,
       },
     };
-    axios.post("http://localhost:4004/api/events", event).catch((err) => {
+    axios.post("http://event-handler-srv:4004/api/events", event).catch((err) => {
       console.log(err.message);
     });
     res.cookie("access_token", token, { httpOnly: true }).status(200).json({

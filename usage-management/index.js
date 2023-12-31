@@ -26,7 +26,7 @@ cron.schedule('0 0 * * *', async () => {
         newUsage: 25,
       },
     };
-    axios.post("http://localhost:4004/api/events", event).catch((err) => {
+    axios.post("http://event-handler-srv:4004/api/events", event).catch((err) => {
       console.log(err.message);
     });
 
@@ -39,7 +39,7 @@ cron.schedule('0 0 * * *', async () => {
 const port = process.env.PORT || 5003;
 databseConnect();
 app.listen(port, () => {
-  console.log(`sever is running at port ${port}`);
+  console.log(`Server is running at port ${port}`);
 });
 app.use("/api/usage", usageRoutes);
 app.use("/api/", eventRoutes);

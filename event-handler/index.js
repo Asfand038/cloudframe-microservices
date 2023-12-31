@@ -14,7 +14,7 @@ app.use(bodyParser.json({ limit: "10mb" }));
 const port = process.env.PORT || 5004;
 // databseConnect();
 app.listen(port, () => {
-  console.log(`sever is running at port ${port}`);
+  console.log(`Server is running at port ${port}`);
 });
 app.use("/api", eventRoutes);
 app.use((err, req, res, next) => {

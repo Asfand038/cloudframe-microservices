@@ -1,0 +1,68 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: cloud-frame-409720
+  artifacts:
+    - image: us.gcr.io/cloud-frame-409720/cloudframe
+      context: cloudframe
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/*/.js"
+            dest: .
+    - image: us.gcr.io/cloud-frame-409720/event-handler
+      context: event-handler
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: us.gcr.io/cloud-frame-409720/images-management
+      context: images-management
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: us.gcr.io/cloud-frame-409720/query-service
+      context: query-service
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: us.gcr.io/cloud-frame-409720/storage-management
+      context: storage-management
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: us.gcr.io/cloud-frame-409720/usage-management
+      context: usage-management
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: us.gcr.io/cloud-frame-409720/user-account-management
+      context: user-account-management
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .

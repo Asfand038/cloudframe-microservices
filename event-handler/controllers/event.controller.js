@@ -4,7 +4,6 @@ import { appendFile } from "fs/promises";
 async function appendToFile(fileName, data) {
   try {
     await appendFile(fileName, data, { flag: "a" });
-    // console.log(`Appended data to ${fileName}`);
   } catch (error) {
     console.error(`Got an error trying to append the file: {error.message}`);
   }
@@ -21,16 +20,16 @@ export const postEvent = (req, res, next) => {
   }
   
   appendToFile("./logging.txt", expression);
-  axios.post("http://localhost:4001/api/events", event).catch((err) => {
+  axios.post("http://images-management-srv:4001/api/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4002/api/events", event).catch((err) => {
+  axios.post("http://storage-management-srv:4002/api/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4003/api/events", event).catch((err) => {
+  axios.post("http://usage-management-srv:4003/api/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4005/api/events", event).catch((err) => {
+  axios.post("http://query-service-srv:4005/api/events", event).catch((err) => {
     console.log(err.message);
   });
   res.send({ status: "OK" });

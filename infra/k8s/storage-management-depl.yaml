@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storage-management-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storage-management
+  template:
+    metadata:
+      labels:
+        app: storage-management
+    spec:
+      containers:
+        - name: storage-management
+          image: us.gcr.io/cloud-frame-409720/storage-management
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: storage-management-srv
+spec:
+  selector:
+    app: storage-management
+  ports:
+    - name: storage-management
+      protocol: TCP
+      port: 4002
+      targetPort: 4002

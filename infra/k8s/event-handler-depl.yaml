@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-handler-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-handler
+  template:
+    metadata:
+      labels:
+        app: event-handler
+    spec:
+      containers:
+        - name: event-handler
+          image: us.gcr.io/cloud-frame-409720/event-handler
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-handler-srv
+spec:
+  selector:
+    app: event-handler
+  ports:
+    - name: event-handler
+      protocol: TCP
+      port: 4004
+      targetPort: 4004

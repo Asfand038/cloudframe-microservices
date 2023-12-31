@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: images-management-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: images-management
+  template:
+    metadata:
+      labels:
+        app: images-management
+    spec:
+      containers:
+        - name: images-management
+          image: us.gcr.io/cloud-frame-409720/images-management
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: images-management-srv
+spec:
+  selector:
+    app: images-management
+  ports:
+    - name: images-management
+      protocol: TCP
+      port: 4001
+      targetPort: 4001

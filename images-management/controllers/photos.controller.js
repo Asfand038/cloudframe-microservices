@@ -52,7 +52,7 @@ export const uploadImage = async (req, res, next) => {
       return next(errorHandler(405, "Don't have enough storage!"));
     }
     if (imgSizeToCompare > user.usageRemaining) {
-      return next(errorHandler(405, "You have crossed today limit!"));
+      return next(errorHandler(402, "You have crossed today limit!"));
     }
     const b64 = Buffer.from(req.files[0].buffer).toString("base64");
     let dataURI = "data:" + req.files[0].mimetype + ";base64," + b64;
@@ -93,7 +93,7 @@ export const uploadImage = async (req, res, next) => {
     //     imgSize,
     //   },
     // };
-    axios.post("http://localhost:4004/api/events", event).catch((err) => {
+    axios.post("http://event-handler-srv:4004/api/events", event).catch((err) => {
       console.log(err.message);
     });
     res.status(200).json({
@@ -165,7 +165,7 @@ export const deleteImage = async (req, res, next) => {
       },
     };
 
-    await axios.post("http://localhost:4004/api/events", event);
+    await axios.post("http://event-handler-srv:4004/api/events", event);
 
     res.status(200).json({
       success: true,

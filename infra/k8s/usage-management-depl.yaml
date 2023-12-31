@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usage-management-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usage-management
+  template:
+    metadata:
+      labels:
+        app: usage-management
+    spec:
+      containers:
+        - name: usage-management
+          image: us.gcr.io/cloud-frame-409720/usage-management
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: usage-management-srv
+spec:
+  selector:
+    app: usage-management
+  ports:
+    - name: usage-management
+      protocol: TCP
+      port: 4003
+      targetPort: 4003

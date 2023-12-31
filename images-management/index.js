@@ -27,7 +27,7 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 app.listen(port, () => {
-  console.log(`sever is running at port ${port}`);
+  console.log(`Server is running at port ${port}`);
 });
 app.use("/api/photos", photosRoutes);
 app.use("/api/", eventRoutes);

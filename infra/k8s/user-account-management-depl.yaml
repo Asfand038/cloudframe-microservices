@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-account-management-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-account-management
+  template:
+    metadata:
+      labels:
+        app: user-account-management
+    spec:
+      containers:
+        - name: user-account-management
+          image: us.gcr.io/cloud-frame-409720/user-account-management
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-account-management-srv
+spec:
+  selector:
+    app: user-account-management
+  ports:
+    - name: user-account-management
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

@@ -30,7 +30,7 @@ const handleEvent = async (type, data) => {
         newStorage: newStorage,
       },
     };
-    axios.post("http://localhost:4004/api/events", event).catch((err) => {
+    axios.post("http://event-handler-srv:4004/api/events", event).catch((err) => {
       console.log(err.message);
     });
   }
@@ -58,7 +58,7 @@ const handleEvent = async (type, data) => {
         newStorage: newStorage,
       },
     };
-    axios.post("http://localhost:4004/api/events", event).catch((err) => {
+    axios.post("http://event-handler-srv:4004/api/events", event).catch((err) => {
       console.log(err.message);
     });
   }
